@@ -7,12 +7,10 @@
 <body>
 <h1 th:text="${title}">Default Title</h1>
 
-<a href="/art/add">Add Art Type</a>
+<form method = "post">
+    <input type="text" name="artType" />
+    <input type="submit" value="Add Art" />
+</form>
 
-<p th:unless="${arts} and ${arts.size()}">You have no tracked art.</p>
-
-<ul>
-    <li th:each="art : ${arts}" th:text="${art}"></li>
-</ul>
 </body>
 </html>
