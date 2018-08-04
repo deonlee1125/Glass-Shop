@@ -1,5 +1,7 @@
 package com.example.glassshop.controllers;
 
+import com.example.glassshop.models.forms.Art;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -7,12 +9,14 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 @Controller
 @RequestMapping("art")
 public class ArtController {
 
-    static ArrayList<String> arts = new ArrayList<>();
+    static ArrayList<Art> arts = new ArrayList<>();
+    //static HashMap<String, String> arts = new HashMap<>();
 
     @RequestMapping(value = "")
     public String index(Model model) {
@@ -22,16 +26,6 @@ public class ArtController {
         return "art/index";
     }
 
-
-    /*@RequestMapping(value = "", method = RequestMethod.GET)
-   public String index(Model model) {
-
-       //model.addAttribute("cheeses", cheeseDao.findAll());
-       model.addAttribute("title", "Welcome to ARTracker!");
-
-       return "art/index";
-   }
-}*/
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddArtForm(Model model) {
         model.addAttribute("title", "Add Art");
@@ -41,24 +35,12 @@ public class ArtController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddArtForm(@RequestParam String artType) {
-        arts.add(artType);
+    public String processAddArtForm(@RequestParam Integer artistNumber, @RequestParam String artistName,
+                                    @RequestParam Integer trackingNumber,
+                                    @RequestParam String description, @RequestParam String location,
+                                    @RequestParam Double price) {
+        Art newArt = new Art(artistNumber, artistName, trackingNumber, description, location, price);
+        arts.add(newArt);
         return "redirect:";
     }
 }
-
-
-    /*public String processAddArtForm(@ModelAttribute @Valid Cheese newCheese,
-                                       Errors errors, @RequestParam int categoryId, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Cheese");
-            model.addAttribute( "categories", categoryDao.findAll());
-            return "cheese/add";
-        }
-
-        Category cat = categoryDao.findOne(categoryId);
-        newCheese.setCategory(cat);
-        cheeseDao.save(newCheese);
-        return "redirect:";
-    }*/
