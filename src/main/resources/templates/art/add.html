@@ -4,51 +4,46 @@
 <body class="container">
     <h1 th:text="${title}">Default Title</h1>
     <nav th:replace="fragments :: navigation"></nav>
+    <!--
+        <form method="post">
 
-    <form method="post">
-        <input type="text" name="artistNumber" />
-        <input type="text" name="artistName" />
-        <input type="text" name="trackingNumber" />
-        <input type="text" name="description" />
-        <input type="text" name="location" />
-        <input type="text" name="price" />
-        <input type="submit" value="Add Art" />
-    </form>
-<!--
-    <form th:object="${art}" style="max-width:600px;" method="post">
+            <input type="submit" value="Add Art" />
+        </form>
+    -->
+        <form style="max-width:600px;" method="post">
 
-        <div class="form-group">
-            <label th:for="artistName">Artist Name</label>
-            <input th:field="${art.artistName}" />
-            <div th:errors="${art.artistName}" class="error" />
-        </div>
+            <div class="form-group">
+                <label th:for="artistNumber">Artist Number</label>
+                <input class="form-control" type="text" name="artistNumber" />
+            </div>
 
-        <div class="form-group">
-            <label th:for="trackingNumber">Tracking Number</label>
-            <input th:field="${art.trackingNumber}" />
-            <div th:errors="${art.trackingNumber}" class="error" />
-        </div>
+            <div class="form-group">
+                <label th:for="artistName">Artist Name</label>
+                <input class="form-control" type="text" name="artistName" />
+            </div>
 
-        <div class="form-group">
-            <label th:for="description">Description</label>
-            <input th:field="${art.description}" />
-            <div th:errors="${art.description}" class="error" />
-        </div>
+            <div class="form-group">
+                <label th:for="trackingNumber">Tracking Number</label>
+                <input class="form-control" type="text" name="trackingNumber" />
+            </div>
 
-        <div class="form-group">
-            <label th:for="location">Location</label>
-            <input th:field="${art.location}" />
-            <div th:errors="${art.location}" class="error" />
-        </div>
+            <div class="form-group">
+                <label th:for="description">Description</label>
+                <input class="form-control" type="text" name="description" />
+            </div>
 
-        <div class="form-group">
-            <label th:for="price">Price</label>
-            <input th:field="${art.price}" />
-            <div th:errors="${art.price}" class="error" />
-        </div>
+            <div class="form-group">
+                <label th:for="location">Location</label>
+                <input class="form-control" type="text" name="location" />
+            </div>
 
-        <input type="submit" value="Add Art" />
-    </form> -->
+            <div class="form-group">
+                <label th:for="price">Price</label>
+                <input class="form-control" type="text" name="price" />
+            </div>
+
+            <input type="submit" value="Add Art" />
+        </form>
 
 </body>
 </html>

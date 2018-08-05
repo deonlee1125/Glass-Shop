@@ -31,10 +31,14 @@ public class Art {
    // @Size(min = 1, message = "Please include the price for this art.")
     private Double price;
 
+    private int artId;
+    private static int nextId =1;
+
     //@OneToMany
     //private Art art;
 
     public Art(Integer artistNumber, String artistName, Integer trackingNumber, String description, String location, Double price) {
+        this();
         this.artistNumber = artistNumber;
         this.artistName = artistName;
         this.trackingNumber = trackingNumber;
@@ -43,7 +47,10 @@ public class Art {
         this.price = price;
     }
 
-    //public Art() { }
+    public Art() {
+        artId = nextId;
+        nextId++;
+    }
         public Integer getArtistNumber () { return artistNumber; }
         public void setArtistNumber (Integer artistNumber){ this.artistNumber = artistNumber; }
 
@@ -61,5 +68,8 @@ public class Art {
 
         public Double getPrice () { return price; }
         public void setPrice (Double price){ this.price = price; }
+
+        public int getArtId() { return artId; }
+        public void setArtId(int artId) { this.artId = artId; }
 
     }
