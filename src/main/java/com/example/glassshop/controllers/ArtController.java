@@ -24,7 +24,7 @@ public class ArtController {
     public String index(Model model) {
 
         model.addAttribute("arts", artDao.findAll());
-        model.addAttribute("title", "Welcome to ARTracker!");
+        model.addAttribute("title", "All Tracked Art");
         return "art/index";
     }
 
