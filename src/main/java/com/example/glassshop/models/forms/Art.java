@@ -11,9 +11,7 @@ public class Art {
     @GeneratedValue
     private int id;
 
-    @NotNull
-    @Size(min = 1, message = "Please include the artist's name.")
-    private String artistName;
+    private ArtistName artistName;
 
     @NotNull(message = "Please include tracking number.")
     private Integer trackingNumber;
@@ -31,8 +29,7 @@ public class Art {
     //@OneToMany
     //private Art art;
 
-    public Art(String artistName, Integer trackingNumber, String description, Double price) {
-        this.artistName = artistName;
+    public Art(Integer trackingNumber, String description, Double price) {
         this.trackingNumber = trackingNumber;
         this.description = description;
         this.price = price;
@@ -42,8 +39,8 @@ public class Art {
 
     public int getId() { return id; }
 
-    public String getArtistName () { return artistName; }
-    public void setArtistName (String artistName){ this.artistName = artistName; }
+    public ArtistName getArtistName () { return artistName; }
+    public void setArtistName (ArtistName artistName){ this.artistName = artistName; }
 
     public Integer getTrackingNumber () { return trackingNumber; }
     public void setTrackingNumber(Integer trackingNumber) { this.trackingNumber = trackingNumber; }

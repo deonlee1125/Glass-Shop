@@ -8,4 +8,5 @@ public enum ArtLocation {
     private final String name;
 
     ArtLocation(String name) { this.name = name; }
-    public String getName() { return name; } }
+    public String getName() { return name; }
+}

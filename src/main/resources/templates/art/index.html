@@ -19,7 +19,7 @@
             </tr>
 
             <tr th:each="art : ${arts}">
-                <td th:text="${art.artistName}"></td>
+                <td th:text="${art.artistName.name}"></td>
                 <td th:text="${art.trackingNumber}"></td>
                 <td th:text="${art.description}"></td>
                 <td th:text="${art.location.name}"></td>

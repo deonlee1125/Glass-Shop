@@ -3,6 +3,7 @@ package com.example.glassshop.controllers;
 import com.example.glassshop.models.data.ArtDao;
 import com.example.glassshop.models.forms.Art;
 import com.example.glassshop.models.forms.ArtLocation;
+import com.example.glassshop.models.forms.ArtistName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -31,6 +32,7 @@ public class ArtController {
     public String displayAddArtForm(Model model) {
         model.addAttribute("title", "Add Art");
         model.addAttribute(new Art());
+        model.addAttribute("artistNames", ArtistName.values());
         model.addAttribute("artLocations", ArtLocation.values());
         //model.addAttribute("categories", categoryDao.findAll());
         return "art/add";
