@@ -2,9 +2,10 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
-    <h1 th:text="${title}">Default Title</h1>
 
-    <nav th:replace="fragments :: navigation"></nav>
+<nav th:replace="fragments :: navigation"></nav>
+
+    <h1 th:text="${title}">Default Title</h1>
 
     <p th:unless="${arts} and ${arts.size()}">You have no tracked art.</p>
 
@@ -16,6 +17,7 @@
                 <th>Description</th>
                 <th>Location</th>
                 <th>Price</th>
+                <th>Image</th>
             </tr>
 
             <tr th:each="art : ${arts}">
@@ -24,8 +26,8 @@
                 <td th:text="${art.description}"></td>
                 <td th:text="${art.location.name}"></td>
                 <td th:text="${art.price}"></td>
+                <td th:text="${art.image}"></td>
             </tr>
-
         </table>
     <!-- <p><a href="/cheese/add">Add</a> | <a href="/cheese/remove">Remove</a></p> -->
 </body>

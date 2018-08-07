@@ -25,14 +25,17 @@ public class Art {
     @NotNull (message = "Please include the price for this art.")
     private Double price;
 
+    private String image;
+
 
     //@OneToMany
     //private Art art;
 
-    public Art(Integer trackingNumber, String description, Double price) {
+    public Art(Integer trackingNumber, String description, Double price, String image) {
         this.trackingNumber = trackingNumber;
         this.description = description;
         this.price = price;
+        this.image = image;
     }
 
     public Art() { }
@@ -54,4 +57,6 @@ public class Art {
     public Double getPrice () { return price; }
     public void setPrice (Double price){ this.price = price; }
 
-    }
+    public String getImage() { return image; }
+    public void setImage(String image) { this.image = image; }
+}

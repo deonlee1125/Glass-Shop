@@ -67,4 +67,29 @@ public class ArtController {
 
         return "redirect:";
     }
+
+    @RequestMapping(value = "search", method = RequestMethod.GET)
+    public String displaySearchForm(Model model) {
+        model.addAttribute("arts", artDao.findAll());
+        model.addAttribute("title", "Search Art");
+        model.addAttribute(new Art());
+        model.addAttribute("artistNames", ArtistName.values());
+        return "art/search";
+    }
+/**
+    @RequestMapping(value = "search", method = RequestMethod.POST)
+    public String processSearchForm(@ModelAttribute @Valid Art newArt,
+                                    Errors errors, Model model) {
+
+        if (errors.hasErrors()) {
+            model.addAttribute("title", "Search Art");
+            return "art/search";
+        }
+
+        if
+        artDao.save(newArt);
+        return "redirect:";
+    }
+*/
 }
+
