@@ -1,4 +1,4 @@
-package com.example.glassshop.models.forms;
+package com.example.glassshop.models;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
@@ -26,10 +26,6 @@ public class Art {
     private Double price;
 
     private String image;
-
-
-    //@OneToMany
-    //private Art art;
 
     public Art(Integer trackingNumber, String description, Double price, String image) {
         this.trackingNumber = trackingNumber;

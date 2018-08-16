@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+
+<div th:replace="fragments :: page-header"></div>
+
+<div class="container body-content">
+
+    <h1 th:text="${title}">Default Title</h1>
+
+    <div th:unless="${arts} and ${arts.size()}">
+        <h2>No Results</h2>
+    </div>
+
+    <div th:fragment="arts-list">
+        <div th:if="${arts} and ${arts.size()}">
+
+            <h3 th:text="${arts.size() + ' Result(s)'}"></h3>
+
+            <div th:each="arts : ${arts}">
+                <table  th:fragment="single-art" class="art-listing">
+                    <tr>
+                        <th>Artist Name</th>
+                        <td th:text="${art.artistName}"></td>
+                    </tr>
+                    <tr>
+                        <th>Tracking Number</th>
+                        <td th:text="${art.trackingNumber}"></td>
+                    </tr>
+                    <tr>
+                        <th>Description</th>
+                        <td th:text="${art.description}"></td>
+                    </tr>
+                    <tr>
+                        <th>Location</th>
+                        <td th:text="${art.location}"></td>
+                    </tr>
+                    <tr>
+                        <th>Price</th>
+                        <td th:text="${art.price}"></td>
+                    </tr>
+                    <tr>
+                        <th>Image</th>
+                        <td th:text="${art.image}"></td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+</body>
+</html>

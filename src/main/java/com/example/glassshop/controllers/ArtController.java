@@ -1,9 +1,9 @@
 package com.example.glassshop.controllers;
 
 import com.example.glassshop.models.data.ArtDao;
-import com.example.glassshop.models.forms.Art;
-import com.example.glassshop.models.forms.ArtLocation;
-import com.example.glassshop.models.forms.ArtistName;
+import com.example.glassshop.models.Art;
+import com.example.glassshop.models.ArtLocation;
+import com.example.glassshop.models.ArtistName;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -44,6 +44,8 @@ public class ArtController {
 
         if (errors.hasErrors()) {
             model.addAttribute("title", "Add Art");
+            model.addAttribute("artistNames", ArtistName.values());
+            model.addAttribute("artLocations", ArtLocation.values());
             return "art/add";
         }
 
@@ -65,31 +67,9 @@ public class ArtController {
             artDao.delete(artId);
         }
 
+
         return "redirect:";
     }
 
-    @RequestMapping(value = "search", method = RequestMethod.GET)
-    public String displaySearchForm(Model model) {
-        model.addAttribute("arts", artDao.findAll());
-        model.addAttribute("title", "Search Art");
-        model.addAttribute(new Art());
-        model.addAttribute("artistNames", ArtistName.values());
-        return "art/search";
-    }
-/**
-    @RequestMapping(value = "search", method = RequestMethod.POST)
-    public String processSearchForm(@ModelAttribute @Valid Art newArt,
-                                    Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Search Art");
-            return "art/search";
-        }
-
-        if
-        artDao.save(newArt);
-        return "redirect:";
-    }
-*/
 }
 

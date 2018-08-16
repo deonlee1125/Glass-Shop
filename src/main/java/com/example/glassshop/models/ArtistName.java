@@ -1,4 +1,4 @@
-package com.example.glassshop.models.forms;
+package com.example.glassshop.models;
 
 public enum ArtistName {
     ALEXANDER_DANIEL ("Alexander, Dan"),

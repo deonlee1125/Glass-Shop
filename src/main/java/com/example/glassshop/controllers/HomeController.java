@@ -1,5 +1,6 @@
 package com.example.glassshop.controllers;
 
+//import com.example.glassshop.models.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
@@ -26,7 +27,7 @@ public class HomeController {
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLoginForm (Model model, @ModelAttribute, @Valid User newUser, Errors errors) {
+    public String processLoginForm (Model model, @ModelAttribute @Valid User newUser, Errors errors) {
         if (errors.hasErrors())
             model.addAttribute("title", "Log in to ARTracker");
         return "home/login";
