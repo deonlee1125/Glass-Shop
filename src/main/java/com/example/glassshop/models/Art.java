@@ -11,7 +11,8 @@ public class Art {
     @GeneratedValue
     private int id;
 
-    private ArtistName artistName;
+// Changed this from Artist type to string
+    private String artistName;
 
     @NotNull(message = "Please include tracking number.")
     private Integer trackingNumber;
@@ -38,8 +39,12 @@ public class Art {
 
     public int getId() { return id; }
 
-    public ArtistName getArtistName () { return artistName; }
-    public void setArtistName (ArtistName artistName){ this.artistName = artistName; }
+//    public ArtistName getArtistName () { return artistName; }
+//    public void setArtistName (ArtistName artistName){ this.artistName = artistName; }
+
+
+    public String getArtistName() {return artistName;}
+    public void setArtistName(String artistName) {this.artistName = artistName;}
 
     public Integer getTrackingNumber () { return trackingNumber; }
     public void setTrackingNumber(Integer trackingNumber) { this.trackingNumber = trackingNumber; }

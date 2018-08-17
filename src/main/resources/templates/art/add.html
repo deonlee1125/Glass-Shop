@@ -12,7 +12,7 @@
                 <select th:field="*{artistName}">
                     <option th:each="artistName : ${artistNames}"
                             th:text="${artistName.name}"
-                            th:value="${artistName}"></option>
+                            th:value="${artistName.name}"></option><!--Changed this value to be the artist name instead of integer -->
                 </select>
             </div>
 

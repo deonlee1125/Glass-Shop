@@ -11,7 +11,7 @@
 
     <div th:each="art : ${arts}" class="checkbox">
         <input type="checkbox" name="artIds" th:value="${art.id}" th:id="${art.id}"/>
-        <label th:for="${art.id}" th:text="${art.artistName.name + ': ' + art.trackingNumber + ' (' + art.description +')'}"></label>
+        <label th:for="${art.id}" th:text="${art.artistName + ': ' + art.trackingNumber + ' (' + art.description +')'}"></label>
         <br />
     </div>
 
