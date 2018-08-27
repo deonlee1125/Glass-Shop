@@ -1,28 +1,29 @@
-<!-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
 </head>
 <body>
-
+<form style="max-width:600px;" method="post" th:object="${user}">
 <div class="form-group">
-    <label th:for="email">Email</label>
-    <input class="form-control" th:field="*{email}" />
-    <span th:errors="*{email}" class="error"></span>
+    <label th:for="username">Username</label>
+    <input class="form-control" id="username" th:field="*{username}" />
+    <span th:errors="*{username}" class="error"></span>
 </div>
 
 <div class="form-group">
     <label th:for="password">Password (must be at least 7 characters)</label>
-    <input class="form-control" th:field="*{password}" />
+    <input class="form-control" id="password" th:field="*{password}" />
     <span th:errors="*{password}" class="error"></span>
 </div>
 
 <div class="form-group">
     <label th:for="passwordVerify">Retype Password</label>
-    <input class="form-control" th:field="*{passwordVerify}" />
+    <input class="form-control" id="passwordVerify" th:field="*{passwordVerify}" />
     <span th:errors="*{passwordVerify}" class="error"></span>
 </div>
-
+</form>
+<input type="submit" value= "Register" />
 </body>
-</html> -->
+</html>

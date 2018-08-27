@@ -1,9 +1,13 @@
 body {
-    font-family: Georgia
+    font-family: Georgia;
 }
 
 img {
     border-size: 10px;
-    border-color: black;
-    }
+    border-color: Black;
+}
 
+nav {
+    font-family: Impact;
+    font-size: 15px;
+}

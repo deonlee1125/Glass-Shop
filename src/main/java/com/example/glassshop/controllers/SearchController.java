@@ -39,26 +39,26 @@ public class SearchController {
         Iterable<Art> arts = artDao.findAll();
         List<Art> artSearch = new ArrayList<>();
 
-        for(Art art : arts) {
+        for (Art art : arts) {
 
-            //if (searchForm.getSearchField().equals(artistName)) {
-            if (searchForm.getArtistName().equals(art.getArtistName())) {
+            //if (searchForm.getField().equals(artistName)) {
+           /* if (searchForm.getArtistName().equals(art.getArtistName())) {
                 artSearch.add(art);
-            }
+            } */
 
             if (art.getDescription().contains(searchForm.getDescription())) {
                 artSearch.add(art);
             }
 
-            if (searchForm.getTrackingNumber().equals(art.getTrackingNumber())) {
-                artSearch.add(art);
+           /* else if (searchForm.getTrackingNumber().equals(art.getTrackingNumber())) {
+                artSearch.add(art); */
             }
-        }
-        model.addAttribute("title", "Search Results");
-        model.addAttribute("artistNames", ArtistName.values());
-        model.addAttribute("artSearch", artSearch);
+            model.addAttribute("title", "Search Results");
+            model.addAttribute("artistNames", ArtistName.values());
+            model.addAttribute("artSearch", artSearch);
 
-        return "art/search-results";
-    }
+            return "art/search-results";
+        }
 
 }
+

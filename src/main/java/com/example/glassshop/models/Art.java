@@ -11,9 +11,10 @@ public class Art {
     @GeneratedValue
     private int id;
 
+    //@Size(min = 1, message = "Please include an artist name.")
     private ArtistName artistName;
 
-    @NotNull(message = "Please include tracking number.")
+    @NotNull(message = "Please include a tracking number.")
     private Integer trackingNumber;
 
     @NotNull

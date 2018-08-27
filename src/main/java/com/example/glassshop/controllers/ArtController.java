@@ -66,10 +66,19 @@ public class ArtController {
         for (int artId : artIds) {
             artDao.delete(artId);
         }
-
-
         return "redirect:";
     }
+/*
+    @RequestMapping(value = "edit/{artId}", method = RequestMethod.GET)
+    public String displayEditArtForm(Model model, @PathVariable int artId){
+        artDao.findOne(artId);
+        model.addAttribute("artistNames", ArtistName.values());
+        model.addAttribute("artLocations", ArtLocation.values());
+        return "art/edit";
 
+    @RequestMapping(value="edit", method = RequestMethod.POST)
+    public String processEditArtForm(Model model, int artId){
+
+    }*/
 }
 

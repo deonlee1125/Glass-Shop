@@ -14,6 +14,7 @@
                             th:text="${artistName.name}"
                             th:value="${artistName}"></option>
                 </select>
+                <span th:errors="*{artistName}" class="error"></span>
             </div>
 
             <div class="form-group">
@@ -44,7 +45,7 @@
             </div>
 
             <div class="form-group">
-                <label th:for="image">Image (file name including type [.jpg, .png, etc.])</label>
+                <label th:for="image">Image&mdash;Optional (file name including type [.jpg, .png, etc.])</label>
                 <input class="form-control" th:field="*{image}" />
             </div>
 

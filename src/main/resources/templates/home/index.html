@@ -5,22 +5,19 @@
 <h1 th:text="${title}">Default Title</h1>
 
 <div class="form-group">
-    <button type="button">Login</button>
-    <button type="button">Register</button>
+    <form method="get" action="/login">
+        <button type="submit">Login</button>
+    </form>
+    <form method="get" action="/register">
+        <button type="submit">Register</button>
+    </form>
     <form method="get" action="/art">
         <button type="submit">View Art</button>
     </form>
 </div>
-<table class="table">
-
-    <tr>
-        <td><img src="images\LeeVase001.jpg" style="width:200px" /></td>
-        <td><img src="images\AlexanderVase001.jpg" style="width:200px;" /></td>
-        <td><img src="images\LeePaperweight001.jpg" style="width:200px;" /></td>
-        <td><img src="images\LeeVase002.jpg" style="width:200px;" /></td>
-    </tr>
-
-</table>
+<div>
+    <img src="images\home.jpg"/>
+</div>
 
 </body>
 </html>

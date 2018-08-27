@@ -1,6 +1,7 @@
 package com.example.glassshop.models;
 
 public enum ArtistName {
+    NULL_VALUE (""),
     ALEXANDER_DANIEL ("Alexander, Dan"),
     AUER_DOUGLAS ("Auer, Doug"),
     BRAZZLE_RICHARD ("Brazzle, Rick"),
