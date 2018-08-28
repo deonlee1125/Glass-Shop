@@ -19,49 +19,63 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserDao userDao;
+    //private Object User;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
     public String displayAddUserForm(Model model) {
         model.addAttribute("title", "Registration");
         User user = new User();
-        //user.setUsername("noob");
         model.addAttribute("user", user);
 
-        return "home/register";
+        return "user/register";
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
     public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, VerifyError verify) {
         List<User> sameName = userDao.findByUsername(user.getUsername());
-        if(!errors.hasErrors() && user.getPassword().equals(verify) && sameName.isEmpty()) {
+        if (!errors.hasErrors() && user.getPassword().equals(verify) && sameName.isEmpty()) {
             model.addAttribute("user", user);
             userDao.save(user);
-            return "home/register";
+            model.addAttribute("title", "Login Successful");
+            return "user/index";
         } else {
             model.addAttribute("user", user);
             model.addAttribute("title", "User Login");
-            if(!user.getPassword().equals(verify)) {
+            if (!user.getPassword().equals(verify)) {
                 model.addAttribute("message", "Passwords must match.");
                 user.setPassword("");
             }
-            if(!sameName.isEmpty()) {
+            if (!sameName.isEmpty()) {
                 model.addAttribute("message", "Username is taken. Please provide another.");
             }
-            }
 
-        return "redirect:/";
+            return "user/register";
+        }
+
     }
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
-    public String login(Model model, String error, String logout) {
-        if (error != null)
-            model.addAttribute("error", "Your username and password is invalid.");
+    public String displayLoginForm(Model model) {
+        //if (error != null)
+            //model.addAttribute("error", "Your username and password is invalid.");
 
-        if (logout != null)
-            model.addAttribute("message", "You have been logged out successfully.");
+        //if (logout != null)
+            //model.addAttribute("message", "You have been logged out successfully.");
 
-        return "home/login";
+        model.addAttribute("title", "Login Page");
+        User user = new User();
+        model.addAttribute("user", user);
+
+        return "user/login";
     }
+
+
+    //@RequestMapping(value = "login", method = RequestMethod.POST)
+    //public String processLoginForm(Model model, @ModelAttribute @Valid User user, Errors errors, VerifyError verify) {
+
+
+    //}
+}
 
     /*@RequestMapping(value = {"logout"}, method = RequestMethod.GET)
     public String logout(HttpServletRequest request Model model) {
@@ -73,7 +87,6 @@ public class UserController {
                 response.addCookie(c);
             }
         }
-            return "home/login";
+            return "user/login";
         }
     */
-}

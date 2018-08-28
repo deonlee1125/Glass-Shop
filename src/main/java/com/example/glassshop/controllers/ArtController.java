@@ -68,17 +68,20 @@ public class ArtController {
         }
         return "redirect:";
     }
-/*
+
     @RequestMapping(value = "edit/{artId}", method = RequestMethod.GET)
-    public String displayEditArtForm(Model model, @PathVariable int artId){
-        artDao.findOne(artId);
+    public String displayEditArtForm(Model model, @PathVariable int artId) {
+        model.addAttribute("art", artDao.findById(artId));
         model.addAttribute("artistNames", ArtistName.values());
         model.addAttribute("artLocations", ArtLocation.values());
         return "art/edit";
-
+    }
     @RequestMapping(value="edit", method = RequestMethod.POST)
-    public String processEditArtForm(Model model, int artId){
+    public String processEditArtForm(int artId, int trackingNumber, String description, int price, String image){
 
-    }*/
+        Iterable<Art> arts = artDao.findById(artId);
+        artDao.save(arts);
+        return "redirect:";
+    }
+
 }
-

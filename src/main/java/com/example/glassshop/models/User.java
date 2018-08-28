@@ -6,9 +6,6 @@ import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
-//import javax.persistence.*;
-//import java.util.Set;
-
 @Entity
 public class User {
     @Id
@@ -44,7 +41,7 @@ public class User {
     public String getPasswordVerify() { return passwordVerify; }
     public void setPasswordVerify(String passwordVerify) { this.passwordVerify = passwordVerify; }
 
-    //private Set<Role> roles;
+//private Set<Role> roles;
     //@ManyToMany
     //@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     //public Set<Role> getRoles() {

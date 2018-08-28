@@ -1,11 +1,14 @@
-<!--<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head th:replace="fragments :: head"></head>
 <body class="container">
 <nav th:replace="fragments :: navigation"></nav>
-<h1 th:text="'Edit ' +  ${art.trackingNumber + '(id=' + ${art.id} + ')'}">Default Title</h1>
 
-<form style="max-width:600px;" method="post" th:object="${art}">
+<h1 th:text="${title}">Default Title</h1>
+
+<h2 th:text="'Edit ' "></h2>
+
+<form style="max-width:600px;" method="post" th:object="${form}" action = "/art/edit">
 
     <div class="form-group">
         <label th:for="artistName">Artist Name</label>
@@ -19,13 +22,13 @@
 
     <div class="form-group">
         <label th:for="trackingNumber">Tracking Number</label>
-        <input class="form-control" th:field="*{trackingNumber}" />
+        <input class="form-control" th:field="*{trackingNumber}" th:value="${trackingNumber}" />
         <span th:errors="*{trackingNumber}" class="error"></span>
     </div>
 
     <div class="form-group">
         <label th:for="description">Description</label>
-        <input class="form-control" th:field="*{description}" />
+        <input class="form-control" th:field="*{description}" th:value="${description}"/>
         <span th:errors="*{description}" class="error"></span>
     </div>
 
@@ -40,17 +43,17 @@
 
     <div class="form-group">
         <label th:for="price">Price</label>
-        <input class="form-control" th:field="*{price}" />
+        <input class="form-control" th:field="*{price}" th:value="${price}"/>
         <span th:errors="*{price}" class="error"></span>
     </div>
 
     <div class="form-group">
         <label th:for="image">Image&mdash;Optional (file name including type [.jpg, .png, etc.])</label>
-        <input class="form-control" th:field="*{image}" />
+        <input class="form-control" th:field="*{image}"  th:value="${image}"/>
     </div>
-    <input type="hidden" th:value="${art.artId}" name="artId" />
+    <input type="hidden" th:value="*{art.id}" name="artId" />
     <input type="submit" value="Edit Art" />
 </form>
 
 </body>
-</html> -->
+</html>

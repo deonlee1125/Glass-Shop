@@ -1,4 +1,4 @@
-package com.example.glassshop.models.forms;
+/*package com.example.glassshop.models.forms;
 
 public class SearchArtForm {
 
@@ -30,4 +30,4 @@ public class SearchArtForm {
     public void setTrackingNumber(Integer trackingNumber) {
         this.trackingNumber = trackingNumber;
     }
-}
+}*/

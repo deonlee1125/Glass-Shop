@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8"/>
-    <title>Title</title>
-</head>
-<body>
+<head th:replace="fragments :: head"></head>
+<body class="container">
+<nav th:replace="fragments :: navigation"></nav>
+<h1 th:text="${title}">Default Title</h1>
+
 
 <form style="max-width:600px;" method="post" th:object="${user}">
 <div class="form-group">
@@ -19,8 +19,10 @@
     <span th:errors="*{password}" class="error"></span>
 </div>
 
-
 </form>
+
+<input type="submit" value = "Log in" />
+
 </body>
 </html>
 
