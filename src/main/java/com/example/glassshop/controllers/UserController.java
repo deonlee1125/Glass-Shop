@@ -22,7 +22,7 @@ public class UserController {
     //private Object User;
 
     @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddUserForm(Model model) {
+    public String add(Model model) {
         model.addAttribute("title", "Registration");
         User user = new User();
         model.addAttribute("user", user);
@@ -31,28 +31,47 @@ public class UserController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddUserForm(Model model, @ModelAttribute @Valid User user, Errors errors, VerifyError verify) {
+    public String add(Model model, @ModelAttribute @Valid User user, Errors errors) {
         List<User> sameName = userDao.findByUsername(user.getUsername());
-        if (!errors.hasErrors() && user.getPassword().equals(verify) && sameName.isEmpty()) {
-            model.addAttribute("user", user);
-            userDao.save(user);
-            model.addAttribute("title", "Login Successful");
-            return "user/index";
-        } else {
-            model.addAttribute("user", user);
-            model.addAttribute("title", "User Login");
-            if (!user.getPassword().equals(verify)) {
-                model.addAttribute("message", "Passwords must match.");
-                user.setPassword("");
-            }
-            if (!sameName.isEmpty()) {
-                model.addAttribute("message", "Username is taken. Please provide another.");
+        if (!errors.hasErrors() && sameName.isEmpty()) {
+            if (user.getPassword().equals(user.getPasswordVerify())) {
+                model.addAttribute("user", user);
+                userDao.save(user);
+                //model.addAttribute("title", "Login Successful");
+                return "user/index";
             }
 
-            return "user/register";
+        } else {
+            model.addAttribute("user", user);
+            model.addAttribute("title", "Please Try Again");
+
+            if (!sameName.isEmpty()) {
+                model.addAttribute("message", "Username is taken. Please provide another.");
+                user.setUsername("");
+            }
+
+            if (!user.getPassword().equals(user.getPasswordVerify())) {
+                model.addAttribute("message", "Passwords must match.");
+                user.setPassword("");
+                user.setPasswordVerify("");
+            }
+
+            if (errors.hasErrors()) {
+                model.addAttribute("message", "Password must be 8-15 characters long.");
+                user.setPassword("");
+                user.setPasswordVerify("");
+            }
+        }
+
+        return "user/register";
         }
 
     }
+
+
+
+
+/*
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String displayLoginForm(Model model) {
@@ -68,16 +87,17 @@ public class UserController {
 
         return "user/login";
     }
-
-
-    //@RequestMapping(value = "login", method = RequestMethod.POST)
-    //public String processLoginForm(Model model, @ModelAttribute @Valid User user, Errors errors, VerifyError verify) {
-
-
-    //}
+    }
 }
 
-    /*@RequestMapping(value = {"logout"}, method = RequestMethod.GET)
+@RequestMapping(value = "login", method = RequestMethod.POST)
+    //public String processLoginForm(Model model, @ModelAttribute @Valid User user, Errors errors, VerifyError verify) {
+
+&& user.getPassword().equals(verify)
+    }
+}
+
+    @RequestMapping(value = {"logout"}, method = RequestMethod.GET)
     public String logout(HttpServletRequest request Model model) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
