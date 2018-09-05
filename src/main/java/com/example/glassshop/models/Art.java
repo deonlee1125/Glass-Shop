@@ -1,5 +1,7 @@
 package com.example.glassshop.models;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -11,14 +13,12 @@ public class Art {
     @GeneratedValue
     private int id;
 
-    //@Size(min = 1, message = "Please include an artist name.")
     private ArtistName artistName;
 
     @NotNull(message = "Please include a tracking number.")
     private Integer trackingNumber;
 
-    @NotNull
-    @Size(min = 1, message = "Please include a description of the art.")
+    @NotBlank(message = "Please include a description of the art.")
     private String description;
 
     private ArtLocation location;

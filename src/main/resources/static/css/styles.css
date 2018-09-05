@@ -11,3 +11,11 @@ nav {
     font-family: Impact;
     font-size: 15px;
 }
+
+p {
+    font-size: 16px;
+}
+
+error {
+    font-color: red;
+}

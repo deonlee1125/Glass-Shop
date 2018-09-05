@@ -2,24 +2,28 @@ package com.example.glassshop.models;
 
 //import org.hibernate.validator.constraints.Email;
 
+import org.hibernate.validator.constraints.NotBlank;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
 public class User {
+
     @Id
     @GeneratedValue
     private int id;
 
-    @NotNull
-    @Size(min=5, max=15, message="Please choose a username that's 5-15 characters long.")
+    @NotNull(message = "Username cannot be blank.")
+    @Size(min=5, max=15, message="Please choose a username that is 5-15 characters long.")
     private String username;
 
-    @NotNull
-    @Size(min=8, max=15, message="Please choose a password that's 8-15 characters long.")
+    @NotNull(message = "Password cannot be blank.")
+    @Size(min=8, max=15, message="Please choose a password that is 8-15 characters long.")
     private String password;
 
+    @NotNull(message = "Please retype your password.")
     private String passwordVerify;
 
     public User(String username, String password, String passwordVerify) {
@@ -28,7 +32,7 @@ public class User {
         this.passwordVerify = passwordVerify;
     }
 
-    public User() {}
+    public User() { }
 
     public int getId() { return id; }
 
