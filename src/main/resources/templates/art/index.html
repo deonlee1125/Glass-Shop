@@ -27,7 +27,7 @@
                 <td th:text="${art.location.name}"></td>
                 <td th:text="${art.price}"></td>
                 <td> <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></td>
-                <td><a th:href="@{'art/edit/' + ${art.id}}">edit</a></td>
+                <td><a th:href="@{'art/edit/' + ${art.id}}"><button type="button">edit</button></a></td>
             </tr>
         </table>
 

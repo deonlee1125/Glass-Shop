@@ -48,13 +48,13 @@ public class SearchController {
                 }
             }
             if (searchForm.getArtistName() == ArtistName.NULL_VALUE) {
-                if (art.getDescription().contains(searchForm.getDescription())) {
+                if (art.getDescription().toLowerCase().contains(searchForm.getDescription().toLowerCase())) {
                     artSearch.add(art);
                 }
             }
             if (!searchForm.getDescription().isEmpty() && searchForm.getArtistName() != ArtistName.NULL_VALUE) {
                 if (art.getArtistName().equals(searchForm.getArtistName())) {
-                    if (art.getDescription().contains(searchForm.getDescription())) {
+                    if (art.getDescription().toLowerCase().contains(searchForm.getDescription().toLowerCase())) {
                         artSearch.add(art);
                     }
                 }

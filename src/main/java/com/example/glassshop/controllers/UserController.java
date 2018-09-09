@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.validation.ValidationUtils;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -15,9 +14,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.util.List;
-
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.thymeleaf.util.StringUtils;
 
 
 @Controller
@@ -36,7 +32,7 @@ public class UserController {
     }
 
     @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String add(@ModelAttribute @Valid User user, Errors errors, Model model) {
+    public String add(Model model, @ModelAttribute @Valid User user, Errors errors) {
 
         List<User> sameName = userDao.findByUsername(user.getUsername());
 
@@ -53,22 +49,27 @@ public class UserController {
 
     @RequestMapping(value = "login", method = RequestMethod.GET)
     public String displayLoginForm(Model model, String logout) {
+
         model.addAttribute("title", "Login Page");
 
         if (logout != null)
             model.addAttribute("message", "You have been logged out successfully.");
 
+        model.addAttribute("title", "Login Page");
         model.addAttribute(new User());
         return "user/login";
     }
 
     @RequestMapping(value = "login", method = RequestMethod.POST)
-    public String processLoginForm(Model model, @ModelAttribute @Valid User user, HttpServletResponse response) {
+    public String processLoginForm(Model model, @ModelAttribute User user, HttpServletResponse response) {
+
         List<User> u = userDao.findByUsername(user.getUsername());
+
         if (u.isEmpty()) {
             model.addAttribute("message", "Username already exists. Please choose another.");
-            model.addAttribute("title", "Login Page");
+            model.addAttribute("title", "Unsuccessful Login");
             return "user/login";
+
         }
 
         User loggedIn = u.get(0);
@@ -81,13 +82,13 @@ public class UserController {
 
         } else {
             model.addAttribute("title", "Login Page");
-            //User user = new User();
             model.addAttribute("message", "Invalid Password");
             return "user/login";
+
         }
     }
 
-    @RequestMapping(value = {"logout"}, method = RequestMethod.GET)
+    @RequestMapping(value = "logout", method = RequestMethod.GET)
     public String logout(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null) {
@@ -100,8 +101,8 @@ public class UserController {
         return "user/login";
     }
 }
-/*
-        *****************
+
+  /*      *****************
         *         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
         if (user.getUsername().length() < 6 || user.getUsername().length() > 15) {
             errors.rejectValue("username", "Username must be between 5 and 15 characters long.");
@@ -144,4 +145,3 @@ public class UserController {
             //}
         //}
         */
-

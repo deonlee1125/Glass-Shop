@@ -20,7 +20,6 @@
                            th:text="${artistName.name}"
                            th:value="${artistName}"></option>
                </select>
-               <input type="submit" value="Search" />
 
        <h3>Search by Description</h3>
 
@@ -28,10 +27,11 @@
                <label th:for="description">Enter Search Term: </label>
                <input class="form-control" th:field="*{description}" />
                <span th:errors="*{description}" class="error"></span>
-               <input type="submit" value="Search" />
-
            </div>
 
+           <div>
+           <input type="submit" value="Search" />
+           </div>
 <!--        <h3>Search by Tracking Number</h3>
 
             <div class="form-group">

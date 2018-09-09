@@ -11,6 +11,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.List;
 
 
 @Controller
@@ -69,19 +70,32 @@ public class ArtController {
         return "redirect:";
     }
 
-    @RequestMapping(value = "edit/{artId}", method = RequestMethod.GET)
+    @RequestMapping(value = "/edit/{artId}", method = RequestMethod.GET)
     public String displayEditArtForm(Model model, @PathVariable int artId) {
-        model.addAttribute("art", artDao.findById(artId));
+
+        Art arts = artDao.findById(artId).get(0);
+
+        model.addAttribute("title", "Edit Art");
+        model.addAttribute("art", arts);
         model.addAttribute("artistNames", ArtistName.values());
         model.addAttribute("artLocations", ArtLocation.values());
+
         return "art/edit";
     }
     @RequestMapping(value="edit", method = RequestMethod.POST)
-    public String processEditArtForm(int artId, int trackingNumber, String description, int price, String image){
+    public String processEditArtForm(int artId, ArtistName artistName, int trackingNumber, ArtLocation location, String description, Double price, String image){
 
-        Iterable<Art> arts = artDao.findById(artId);
+        Art arts = artDao.findById(artId).get(0);
+
+        arts.setArtistName(artistName);
+        arts.setTrackingNumber(trackingNumber);
+        arts.setDescription(description);
+        arts.setLocation(location);
+        arts.setPrice(price);
+
         artDao.save(arts);
-        return "redirect:";
+
+        return "redirect:/art";
     }
 
 }
