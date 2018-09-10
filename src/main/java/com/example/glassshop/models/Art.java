@@ -29,7 +29,7 @@ public class Art {
     private String image;
 
     //@ManyToOne
-    //private Art art;
+   // private Art art;
 
     public Art(Integer trackingNumber, String description, Double price, String image) {
         this.trackingNumber = trackingNumber;

@@ -49,8 +49,10 @@
 
     <div class="form-group">
         <label th:for="image">Image&mdash;Optional (file name including type [.jpg, .png, etc.])</label>
-        <input class="form-control" th:field="*{image}"  th:value="${art.image}"/>
+        <input class="form-control" th:field="*{image}" th:value="${art.image}"/>
+        <span th:errors="*{image}" class="error"></span>
     </div>
+
     <input type="hidden" th:value="${artId}" name="artId" />
     <input type="submit" value="Submit Edits" />
 </form>

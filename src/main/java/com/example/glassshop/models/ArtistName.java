@@ -14,6 +14,7 @@ public enum ArtistName {
     MIDDENDORF_LENDY ("Middendorf, Lendy"),
     MORAN_MICHAEL ("Moran, Mike"),
     PARSONS_MICHAEL ("Parsons, Mike"),
+    QUIGLEY_AARON ("Quigley, Aaron"),
     TAGLIAPIETRI_LINO ("Tagliapietri, Lino"),
     TSIMERMAN_MAX ("Tsimerman, Max"),
     WASHINGTON_DORETHA ("Washington, Doretha");

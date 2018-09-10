@@ -5,6 +5,7 @@
 <nav th:replace="fragments :: navigation"></nav>
 <h1 th:text="${title}">Default Title</h1>
 
+<p>You must be logged in to add, remove, or edit art.</p>
 
 <form style="max-width:600px;" method="post" th:object="${user}">
 <div class="form-group">
@@ -19,9 +20,13 @@
     <span th:errors="*{password}" class="error" th:text="${message}"></span>
 </div>
 
+    <input type="submit" value = "Log in" />
+
 </form>
 
-<input type="submit" value = "Log in" />
+<form method="get" action="/user/add">
+    <button type="submit">Register</button>
+</form>
 
 </body>
 </html>

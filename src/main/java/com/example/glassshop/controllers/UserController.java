@@ -19,6 +19,7 @@ import java.util.List;
 @Controller
 @RequestMapping("user")
 public class UserController {
+
     @Autowired
     private UserDao userDao;
 
@@ -78,13 +79,13 @@ public class UserController {
             Cookie c = new Cookie("user", user.getUsername());
             c.setPath("/");
             response.addCookie(c);
-            return "redirect:/art";
+            model.addAttribute("title", "Welcome to ARTracker!");
+            return "user/index";
 
         } else {
             model.addAttribute("title", "Login Page");
             model.addAttribute("message", "Invalid Password");
             return "user/login";
-
         }
     }
 
@@ -98,50 +99,7 @@ public class UserController {
                 response.addCookie(c);
             }
         }
-        return "user/login";
+
+            return "user/logout";
+        }
     }
-}
-
-  /*      *****************
-        *         ValidationUtils.rejectIfEmptyOrWhitespace(errors, "username", "NotEmpty");
-        if (user.getUsername().length() < 6 || user.getUsername().length() > 15) {
-            errors.rejectValue("username", "Username must be between 5 and 15 characters long.");
-        }
-        if (userDao.findByUsername(user.getUsername()) != null) {
-            errors.rejectValue("username", "Username taken. please select another.");
-        }
-
-        ValidationUtils.rejectIfEmptyOrWhitespace(errors, "password", "NotEmpty");
-        if (user.getPassword().length() < 8 || user.getPassword().length() > 15) {
-            errors.rejectValue("password", "Password must be between 8 and 15 characters long.");
-        }
-
-        if (!user.getPasswordVerify().equals(user.getPassword())) {
-            errors.rejectValue("passwordVerify", "Passwords must match");
-        }
-        ******************
-        *
-        *         } else {
-            //model.addAttribute("user", user);
-            model.addAttribute("title", "Please Try Again");
-            //model.addAttribute(errors);
-            //model.addAttribute("errors" "errors")
-            //if (!sameName.isEmpty()) {
-                //model.addAttribute(errors);
-                //model.addAttribute("message", "Username is taken. Please provide another.");
-                //user.setUsername("");
-            //}
-            //if (errors.hasErrors()) {
-                //model.addAttribute(errors);
-                //model.addAttribute("message", "Password must be 8-15 characters.");
-                //user.setPassword("");
-                //user.setPasswordVerify("");
-            }
-
-            //if (!user.getPassword().equals(user.getPasswordVerify())) {
-                //model.addAttribute("message", "Passwords must match.");
-                //user.setPassword("");
-                //user.setPasswordVerify("");
-            //}
-        //}
-        */

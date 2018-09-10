@@ -2,6 +2,7 @@ package com.example.glassshop.models;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class User {
@@ -20,6 +21,10 @@ public class User {
 
     @NotNull(message = "Please retype your password.")
     private String passwordVerify;
+
+    //@OneToMany
+    //@JoinColumn(name="user_id")
+    //private List<Art> arts;
 
     public User(String username, String password, String passwordVerify) {
         this.username = username;
@@ -40,7 +45,9 @@ public class User {
     public String getPasswordVerify() { return passwordVerify; }
     public void setPasswordVerify(String passwordVerify) { this.passwordVerify = passwordVerify; }
 
-//private Set<Role> roles;
+    //public List<Art> getArts() { return arts; }
+
+    //private Set<Role> roles;
     //@ManyToMany
     //@JoinTable(name = "user_role", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     //public Set<Role> getRoles() {
