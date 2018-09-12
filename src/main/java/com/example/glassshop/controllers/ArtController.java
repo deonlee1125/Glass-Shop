@@ -1,20 +1,16 @@
 package com.example.glassshop.controllers;
 
-import com.example.glassshop.models.User;
 import com.example.glassshop.models.data.ArtDao;
 import com.example.glassshop.models.Art;
 import com.example.glassshop.models.ArtLocation;
 import com.example.glassshop.models.ArtistName;
-import com.example.glassshop.models.data.UserDao;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
-import java.util.List;
-
 
 @Controller
 @RequestMapping("art")
@@ -22,9 +18,6 @@ public class ArtController {
 
     @Autowired
     private ArtDao artDao;
-
-    //@Autowired
-   // private UserDao userDao;
 
     @RequestMapping(value = "")
     public String index(Model model, @CookieValue(value="user", defaultValue = "none") String username) {
@@ -45,7 +38,6 @@ public class ArtController {
         model.addAttribute(new Art());
         model.addAttribute("artistNames", ArtistName.values());
         model.addAttribute("artLocations", ArtLocation.values());
-        //model.addAttribute("categories", categoryDao.findAll());
         return "art/add";
     }
 
@@ -92,7 +84,6 @@ public class ArtController {
             return "redirect:/user/login";
         }
 
-
         Art arts = artDao.findById(artId).get(0);
 
         model.addAttribute("title", "Edit Art");
@@ -121,44 +112,3 @@ public class ArtController {
 
 }
 
-/*
-@Controller
-@RequestMapping("art")
-public class ArtController {
-
-    @Autowired
-    private ArtDao artDao;
-
-    @RequestMapping(value = "")
-    public String index(Model model) {
-
-        model.addAttribute("arts", artDao.findAll());
-        model.addAttribute("title", "All Tracked Art");
-        return "art/index";
-    }
-
-    @RequestMapping(value = "add", method = RequestMethod.GET)
-    public String displayAddArtForm(Model model) {
-        model.addAttribute("title", "Add Art");
-        model.addAttribute(new Art());
-        model.addAttribute("artistNames", ArtistName.values());
-        model.addAttribute("artLocations", ArtLocation.values());
-        //model.addAttribute("categories", categoryDao.findAll());
-        return "art/add";
-    }
-
-    @RequestMapping(value = "add", method = RequestMethod.POST)
-    public String processAddArtForm(@ModelAttribute @Valid Art newArt,
-                                    Errors errors, Model model) {
-
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Art");
-            model.addAttribute("artistNames", ArtistName.values());
-            model.addAttribute("artLocations", ArtLocation.values());
-            return "art/add";
-        }
-
-        artDao.save(newArt);
-        return "redirect:";
-    }
- */

@@ -70,7 +70,6 @@ public class UserController {
             model.addAttribute("message", "Username already exists. Please choose another.");
             model.addAttribute("title", "Unsuccessful Login");
             return "user/login";
-
         }
 
         User loggedIn = u.get(0);
@@ -83,7 +82,7 @@ public class UserController {
             return "user/index";
 
         } else {
-            model.addAttribute("title", "Login Page");
+            model.addAttribute("title", "Unsuccessful Login");
             model.addAttribute("message", "Invalid Password");
             return "user/login";
         }

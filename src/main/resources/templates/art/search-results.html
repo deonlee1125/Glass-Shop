@@ -35,7 +35,9 @@
                         <td th:text="${art.description}"></td>
                         <td th:text="${art.location.name}"></td>
                         <td th:text="${art.price}"></td>
-                        <td> <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></td>
+                        <td> <a th:href="@{'/images/' + ${art.image}}" th:data-lightbox="@{'/images/' + ${art.image}}">
+                            <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></a></td>
+                        <td><a th:href="@{'/art/edit/' + ${art.id}}"><button>edit</button></a></td>
 
                     </tr>
                 </table>

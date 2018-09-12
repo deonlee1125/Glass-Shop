@@ -1,6 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head th:replace="fragments :: head"></head>
+
+<head th:replace="fragments :: head">
+    <link rel="stylesheet" th:href="@{/css/lightbox.min.css}" />
+</head>
+
 <body class="container">
 
 <nav th:replace="fragments :: navigation"></nav>
@@ -26,10 +30,31 @@
                 <td th:text="${art.description}"></td>
                 <td th:text="${art.location.name}"></td>
                 <td th:text="${art.price}"></td>
-                <td> <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></td>
-                <td><a th:href="@{'art/edit/' + ${art.id}}"><button type="button">edit</button></a></td>
+                <td> <a th:href="@{'/images/' + ${art.image}}" th:data-lightbox="@{'/images/' + ${art.image}}">
+                    <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></a></td>
+                <td><a th:href="@{'art/edit/' + ${art.id}}"><button>edit</button></a></td>
             </tr>
         </table>
 
+<script src="lib/lightbox-plus-jquery.min.js"></script>
+
 </body>
 </html>
+<!--
+<a href="images/1_b.jpg" data-lightbox="image-1" data-title="this is a forest"><img th:src="@{'/images/' + ${art.image}} + 'thumb'"/></a>
+
+<td> <a class="lightbox" href="#dog"><img th:src="@{'/images/' + ${art.image}}"/></a></td>
+<div class="lightbox-target">
+    <img th:src="@{'/images/' + ${art.image}}"/>
+    <a class="lightbox-close" href="#"></a>
+</div>
+<td><a th:href="@{'art/edit/' + ${art.id}}"><button type="button">edit</button></a></td>
+</tr>
+
+
+*****
+
+                <td> <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></td>
+                <td><a th:href="@{'art/edit/' + ${art.id}}"><button>edit</button></a></td>
+            </tr>
+-->
