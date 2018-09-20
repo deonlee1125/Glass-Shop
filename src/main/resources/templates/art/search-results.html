@@ -22,11 +22,11 @@
 
                     <tr>
                         <th>Artist Name</th>
-                        <th>Tracking Number</th>
+                        <th>Tracking No.</th>
                         <th>Description</th>
                         <th>Location</th>
                         <th>Price</th>
-                        <th>Image</th>
+                        <th>Image <i>(click to enlarge)</i></th>
                     </tr>
 
                     <tr th:each="art : ${artSearch}">
@@ -47,16 +47,6 @@
 
     </div>
 
-<!--
-    <div th:unless="${artSearch == null}">
-
-        <div th:each="art : ${artSearch}">
-            <div th:text = "'Artist name:' + ${art.artistName.name}"></div>
-            <div th:text = "'Description:' + ${art.description}"></div>
-            <div th:text = "'Tracking number:' + ${art.trackingNumber}"></div>
-        </div>
-
--->
 
 </body>
 </html>

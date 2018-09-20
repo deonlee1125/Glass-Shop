@@ -1,5 +1,6 @@
 package com.example.glassshop.controllers;
 
+import com.example.glassshop.models.User;
 import com.example.glassshop.models.data.ArtDao;
 import com.example.glassshop.models.Art;
 import com.example.glassshop.models.ArtLocation;
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
+import java.util.List;
 
 @Controller
 @RequestMapping("art")
@@ -45,8 +47,13 @@ public class ArtController {
     public String processAddArtForm(@ModelAttribute @Valid Art newArt,
                                     Errors errors, Model model) {
 
-        if (errors.hasErrors()) {
-            model.addAttribute("title", "Add Art");
+        List<Art> trackingNum = artDao.findByTrackingNumber(newArt.getTrackingNumber());
+        if(!trackingNum.isEmpty()) {
+            model.addAttribute("title", "Tracking number in use");
+
+        }
+        if(errors.hasErrors()) {
+            model.addAttribute("title", "Please Try Again");
             model.addAttribute("artistNames", ArtistName.values());
             model.addAttribute("artLocations", ArtLocation.values());
             return "art/add";

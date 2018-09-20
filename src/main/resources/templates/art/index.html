@@ -13,15 +13,23 @@
 
     <h4 th:unless="${arts} and ${arts.size()}">You have no tracked art.</h4>
 
-        <table class="table">
+    <h4>Sort By:</h4>
+    <select>
+        <option th:value="${noSort}"></option>
+        <option th:value="${artistNameSort}">Artist Name</option>
+        <option th:value="${trackingNumberSort}">Tracking Number</option>
+    </select>
+<br />
+<br />
+<table class="table">
 
             <tr>
                 <th>Artist Name</th>
-                <th>Tracking Number</th>
+                <th>Tracking No.</th>
                 <th>Description</th>
                 <th>Location</th>
                 <th>Price</th>
-                <th>Image</th>
+                <th>Image <i>(click to enlarge)</i></th>
             </tr>
 
             <tr th:each="art : ${arts}">
@@ -31,30 +39,11 @@
                 <td th:text="${art.location.name}"></td>
                 <td th:text="${art.price}"></td>
                 <td> <a th:href="@{'/images/' + ${art.image}}" th:data-lightbox="@{'/images/' + ${art.image}}">
-                    <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></a></td>
-                <td><a th:href="@{'art/edit/' + ${art.id}}"><button>edit</button></a></td>
+                    <img th:src="@{'/images/' + ${art.image}}" style="height:50px;"/></a></td>
+                <td><a th:href="@{'/art/edit/' + ${art.id}}"><button>edit</button></a></td>
             </tr>
         </table>
 
 <script src="lib/lightbox-plus-jquery.min.js"></script>
-
 </body>
 </html>
-<!--
-<a href="images/1_b.jpg" data-lightbox="image-1" data-title="this is a forest"><img th:src="@{'/images/' + ${art.image}} + 'thumb'"/></a>
-
-<td> <a class="lightbox" href="#dog"><img th:src="@{'/images/' + ${art.image}}"/></a></td>
-<div class="lightbox-target">
-    <img th:src="@{'/images/' + ${art.image}}"/>
-    <a class="lightbox-close" href="#"></a>
-</div>
-<td><a th:href="@{'art/edit/' + ${art.id}}"><button type="button">edit</button></a></td>
-</tr>
-
-
-*****
-
-                <td> <img th:src="@{'/images/' + ${art.image}}" style="height:50px;" /></td>
-                <td><a th:href="@{'art/edit/' + ${art.id}}"><button>edit</button></a></td>
-            </tr>
--->
